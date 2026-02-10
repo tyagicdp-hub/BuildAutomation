@@ -1,18 +1,33 @@
-name: Minimal AnnTest
-on: push
+name: GitHub Actions Demo
+run-name: "${{ github.actor }} is testing out GitHub Actions"
+
+on:
+  push:
 
 jobs:
-  ann:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo trigger (no annotations)
+      - name: Show trigger
         shell: bash
-        run: echo "Trigger=${{ github.event_name }}"
+        run: echo "Trigger: ${{ github.event_name }}"
 
-      - name: Echo runner (no annotations)
+      - name: Show runner
         shell: bash
-        run: echo "Runner=${{ runner.os }}"
+        run: echo "Runner: ${{ runner.os }}"
 
-      - name: Echo ref/repo (no annotations)
+      - name: Show branch & repo
         shell: bash
-        run: echo "Ref=${{ github.ref }} Repo=${{ github.repository }}"
+        run: echo "Branch: ${{ github.ref }} | Repo: ${{ github.repository }}"
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: List files in the repository
+        id: list_files
+        shell: bash
+        run: ls "${{ github.workspace }}"
+
+      - name: Print step outcome
+        shell: bash
+        run: echo "Outcome of 'list_files' is: ${{ steps.list_files.outcome }}"
