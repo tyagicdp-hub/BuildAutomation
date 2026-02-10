@@ -8,10 +8,14 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Show trigger
+      - name: Show trigger (debug)
         run: |
+          set -x
+          echo '---BEGIN STDOUT---'
+          echo "Trigger: ${{ github.event_name }}"
+          echo '---END STDOUT---'
+          { echo '---BEGIN STDERR---' 1>&2; echo 'end' 1>&2; echo '---END STDERR---' 1>&2; } || true
           echo 'Trigger: ${{ github.event_name }}'
-
       - name: Show runner
         run: |
           echo 'Runner: ${{ runner.os }}'
