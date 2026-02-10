@@ -8,9 +8,9 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Trigger: ${{ github.event_name }}"
-      - run: echo "Runner: ${{ runner.os }}"
-      - run: echo "Branch: ${{ github.ref }} | Repo: ${{ github.repository }}"
+      - run: echo 'Trigger: ${{ github.event_name }}'
+      - run: echo 'Runner: ${{ runner.os }}'
+      - run: echo 'Branch: ${{ github.ref }} | Repo: ${{ github.repository }}'
 
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -22,4 +22,4 @@ jobs:
 
       # ✅ This prints a concrete outcome (success/failure/cancelled)
       - name: Print step outcome
-        run: echo "🍏 'List files' step outcome is: ${{ steps.list_files.outcome }}"
+        run: echo "'List files' step outcome is: ${{ steps.list_files.outcome }}"
