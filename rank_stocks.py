@@ -143,7 +143,7 @@ for stock_symbol in df["Stock"]:
 result_df = pd.DataFrame(results)
 
 # ---------- Save back to Excel ----------
-result_df.to_excel("stocks_updated.xlsx", index=False)
+result_df.to_excel("stocks.xlsx", index=False)
 
 print("\nRanking Updated ✅")
-print("Saved file: stocks_updated.xlsx")
+print("Saved file: stocks.xlsx")
