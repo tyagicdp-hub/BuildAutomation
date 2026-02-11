@@ -2,7 +2,7 @@ name: Daily Stock Ranking
 
 on:
   schedule:
-    - cron: '0 4 * * *'   # Runs daily (UTC time)
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -25,3 +25,9 @@ jobs:
       - name: Run Ranking Script
         run: |
           python rank_stocks.py
+
+      - name: Upload CSV File
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-ranking
+          path: stock_ranking_*.csv
