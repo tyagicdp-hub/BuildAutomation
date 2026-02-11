@@ -115,39 +115,35 @@ def rank_stock(symbol):
 
     return round(rank, 2), flags, action
 
-
-# ---------- Run for selected stocks ----------
-
-stocks = ["HAL.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS"]
+# ---------- Read Excel ----------
+df = pd.read_excel("stocks.xlsx")
 
 results = []
 
-for s in stocks:
+for stock_symbol in df["Stock"]:
     try:
-        rank, flags, action = rank_stock(s)
+        rank, flags, action = rank_stock(stock_symbol)
+
         results.append({
-            "Stock": s,
+            "Stock": stock_symbol,
             "Rank": rank,
             "Flags": ", ".join(flags) if flags else "None",
             "Action": action
         })
+
     except Exception as e:
         results.append({
-            "Stock": s,
+            "Stock": stock_symbol,
             "Rank": None,
             "Flags": f"Error: {e}",
             "Action": "ERROR"
         })
 
-df = pd.DataFrame(results)
-df = df.sort_values("Rank", ascending=False)
+# ---------- Convert to DataFrame ----------
+result_df = pd.DataFrame(results)
 
-today = date.today().isoformat()
-filename = f"stock_ranking_{today}.csv"
+# ---------- Save back to Excel ----------
+result_df.to_excel("stocks_updated.xlsx", index=False)
 
-df.to_csv(filename, index=False)
-
-print("\nStock Ranking with Sanity Checks:\n")
-print(df)
-print(f"\nSaved to file: {filename}")
-
+print("\nRanking Updated ✅")
+print("Saved file: stocks_updated.xlsx")
