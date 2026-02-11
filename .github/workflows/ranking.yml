@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install yfinance pandas numpy
+          pip install yfinance pandas numpy openpyxl
 
       - name: Run Ranking Script
         run: |
