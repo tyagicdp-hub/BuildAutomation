@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: stock-ranking
-          path: stock_ranking_*.csv
+          path: stocks_updated.xlsx
